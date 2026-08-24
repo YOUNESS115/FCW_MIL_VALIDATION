@@ -24,11 +24,10 @@ jobs:
             Simulink
             Simulink_Test
 
-      - name: Run FCW MIL validation
-        uses: matlab-actions/run-command@v3
-        with:
-          command: run_FCW_validation
-
+      - name: Generate and run FCW MIL validation
+  uses: matlab-actions/run-command@v3
+  with:
+    command: create_FCW_iterations; run_FCW_validation
       - name: Upload FCW HTML report
         uses: actions/upload-artifact@v4
         with:
