@@ -1,5 +1,17 @@
-clear;
+
 clc;
+%% ============================================================
+%  INITIALISATION DES VARIABLES DU TEST HARNESS
+% ============================================================
+
+assignin('base','tc_distance',0);
+assignin('base','tc_vrel',0);
+assignin('base','tc_targetPresent',0);
+assignin('base','tc_targetInLane',0);
+
+assignin('base','tc_expectedSafe',0);
+assignin('base','tc_expectedYellow',0);
+assignin('base','tc_expectedRed',0);
 
 fprintf('\n============================================\n');
 fprintf(' FCW MIL AUTOMATED REGRESSION\n');
