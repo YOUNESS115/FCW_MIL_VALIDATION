@@ -16,8 +16,8 @@ clc;
 % 1. CONFIGURATION
 %% ============================================================
 
-projectFolder = ...
-    'C:\Users\HP\Documents\FCW_ADAS';
+projectFolder = fileparts(mfilename('fullpath'));
+cd(projectFolder);
 
 excelFile = fullfile( ...
     projectFolder, ...
