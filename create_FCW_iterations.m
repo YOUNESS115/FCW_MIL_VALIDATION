@@ -27,7 +27,7 @@ testFilePath = fullfile( ...
     projectFolder, ...
     'FCW_Validation.mldatx');
 
-cd(projectFolder);
+
 
 fprintf('\n');
 fprintf('============================================\n');
