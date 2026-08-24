@@ -393,7 +393,7 @@ end
 % 13. OUVRIR TEST MANAGER
 %% ============================================================
 
-sltest.testmanager.view;
+%sltest.testmanager.view;
 
 fprintf('\n');
 fprintf('Test Manager ouvert.\n');
