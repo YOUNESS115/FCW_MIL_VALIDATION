@@ -1,0 +1,36 @@
+name: FCW MIL Validation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  fcw-validation:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup MATLAB R2022b
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2022b
+          products: >
+            Simulink
+            Simulink_Test
+
+      - name: Run FCW MIL validation
+        uses: matlab-actions/run-command@v3
+        with:
+          command: run_FCW_validation
+
+      - name: Upload FCW HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: FCW-MIL-Test-Report
+          path: reports/FCW_Test_Report.zip
