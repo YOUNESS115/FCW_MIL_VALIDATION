@@ -28,10 +28,26 @@ jobs:
       - name: Generate and run FCW MIL validation
         uses: matlab-actions/run-command@v3
         with:
-          command: "create_FCW_iterations; run_FCW_validation"
+          command: "create_FCW_iterations; run_FCW_validation; export_failed_tests"
 
-      - name: Upload FCW HTML report
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Groq SDK
+        run: python -m pip install groq
+
+      - name: Analyze failed tests with Groq
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python analyze_failures_groq.py
+
+      - name: Upload FCW validation artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: FCW-MIL-Test-Report
-          path: reports/FCW_Test_Report.zip
+          name: FCW-Validation-Results
+          path: |
+            reports/FCW_Test_Report.zip
+            reports/failed_tests.json
+            reports/failure_analysis.json
